@@ -95,7 +95,7 @@ export const logout = (req, res) => {
   res.json({ message: "Logged out successfully" });
 };
 
-export const getCurrentUser = (req, res) => {
+export const getCurrentUser = async (req, res) => {
   try {
     res.json(req.user);
   } catch (error) {
