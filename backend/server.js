@@ -6,6 +6,7 @@ import authRoutes from "./routes/auth.js";
 import userRoutes from "./routes/users.js";
 import postRoutes from "./routes/posts.js";
 import notificationRoutes from "./routes/notifications.js";
+import connectionRoutes from "./routes/connections.js";
 
 import { connectDB } from "./lib/db.js";
 
@@ -14,13 +15,14 @@ dotenv.config(); // call the dotenv config to be able to read env file
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(express.json());
+app.use(express.json({ limit: "5mb" }));
 app.use(cookieParser());
 
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/users", userRoutes);
 app.use("/api/v1/posts", postRoutes);
 app.use("/api/v1/notifications", notificationRoutes);
+app.use("/api/v1/connections", connectionRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
