@@ -176,8 +176,3 @@ export const likePost = async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 };
-
-export const updatePost = async (req, res) => {
-  try {
-  } catch (error) {}
-};
