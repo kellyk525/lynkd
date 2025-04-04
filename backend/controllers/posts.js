@@ -9,7 +9,7 @@ export const getFeedPosts = async (req, res) => {
     // Select all the documents in the Post collection where the author field
     // matches any of the user IDs in the current user's connection list
     const posts = await Post.find({
-      author: { $in: req.user.connections },
+      author: { $in: [...req.user.connections, req.user._id] },
     })
       .populate("author", "name username profilePicture headline")
       .populate("comments.user", "name profilePicture")
@@ -99,6 +99,7 @@ export const getPostById = async (req, res) => {
 export const createComment = async (req, res) => {
   try {
     const postId = req.params.id;
+    const { content } = req.body;
     const post = await Post.findByIdAndUpdate(
       postId,
       {
@@ -108,7 +109,7 @@ export const createComment = async (req, res) => {
     ).populate("author", "name email username headline profilePicture");
 
     // create a notification if the comment owner is not the post owner
-    if (post.author.toString() !== req.user._id.toString()) {
+    if (post.author._id.toString() !== req.user._id.toString()) {
       const newNotification = new Notification({
         recipient: post.author,
         type: "comment",
@@ -135,7 +136,7 @@ export const createComment = async (req, res) => {
       }
     }
 
-    res.status(200).json();
+    res.status(200).json(post);
   } catch (error) {
     console.error("Error in createComment controller", error);
     res.status(500).json({ message: "Server error" });
@@ -155,7 +156,7 @@ export const likePost = async (req, res) => {
       );
     } else {
       // like the post
-      post.likes = post.likes.push(userId);
+      post.likes.push(userId);
       // create a notification if the post owner is not the user who liked
       if (post.author.toString() !== userId.toString()) {
         const newNotification = new Notification({

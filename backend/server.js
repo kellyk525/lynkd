@@ -16,13 +16,12 @@ dotenv.config(); // call the dotenv config to be able to read env file
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(
-  cors({
-    origin: "http://localhost:5173",
-    credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE"],
-  })
-);
+const corsOrigin = {
+  origin: "http://localhost:5173",
+  credentials: true,
+  optionSuccessStatus: 200,
+};
+app.use(cors(corsOrigin));
 app.use(express.json({ limit: "5mb" }));
 app.use(cookieParser());
 

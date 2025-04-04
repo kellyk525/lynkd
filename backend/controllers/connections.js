@@ -59,7 +59,7 @@ export const acceptConnectionRequest = async (req, res) => {
         .json({ message: "Not authorized to accept this request" });
     }
 
-    if (request.status === "pending") {
+    if (request.status !== "pending") {
       return res
         .status(400)
         .json({ message: "This request has already been processed" });
@@ -127,7 +127,7 @@ export const rejectConnectionRequest = async (req, res) => {
         .json({ message: "This request has already been processed" });
     }
 
-    request.status === "rejected";
+    request.status = "rejected";
     await request.save();
 
     res.json({ message: "Connection request rejected" });
@@ -144,7 +144,7 @@ export const getConnectionRequests = async (req, res) => {
     const requests = await ConnectionRequest.find({
       recipient: userId,
       status: "pending",
-    }).populate("sender", "name, username profilePicture headline connections");
+    }).populate("sender", "name username profilePicture headline connections");
 
     res.status(200).json(requests);
   } catch (error) {
@@ -157,7 +157,7 @@ export const getUserConnections = async (req, res) => {
   try {
     const userId = req.user._id;
     const user = await User.findById(userId).populate(
-      "collections",
+      "connections",
       "name username profilePicture headline connections"
     );
 
