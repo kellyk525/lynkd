@@ -1,14 +1,16 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { axiosInstance } from "../../lib/axios.js";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import {
+  acceptConnectionRequest,
+  rejectConnectionRequest,
+} from "../../api/connections.js";
 
 const FriendRequest = ({ request }) => {
   const queryClient = useQueryClient();
 
-  const { mutate: acceptConnectionRequest } = useMutation({
-    mutationFn: (requestId) =>
-      axiosInstance.put(`/connections/accept/${requestId}`),
+  const { mutate: acceptConnectionRequestMutation } = useMutation({
+    mutationFn: (requestId) => acceptConnectionRequest(requestId),
     onSuccess: () => {
       toast.success("Connection request accepted");
       queryClient.invalidateQueries({ queryKey: ["connectionRequests"] });
@@ -18,9 +20,8 @@ const FriendRequest = ({ request }) => {
     },
   });
 
-  const { mutate: rejectConnectionRequest } = useMutation({
-    mutationFn: (requestId) =>
-      axiosInstance.put(`/connections/reject/${requestId}`),
+  const { mutate: rejectConnectionRequestMutation } = useMutation({
+    mutationFn: (requestId) => rejectConnectionRequest(requestId),
     onSuccess: () => {
       toast.success("Connection request rejected");
       queryClient.invalidateQueries({ queryKey: ["connectionRequests"] });
@@ -31,7 +32,7 @@ const FriendRequest = ({ request }) => {
   });
 
   return (
-    <div className="bg-white rounded-lg shadow p-4 flex items-center justify-between transition-all hover:shadow-md">
+    <div className="p-4 flex items-center justify-between border-b">
       <div className="flex items-center gap-4">
         <Link to={`/profile/${request.sender.username}`}>
           <img
@@ -44,24 +45,29 @@ const FriendRequest = ({ request }) => {
         <div>
           <Link
             to={`/profile/${request.sender.username}`}
-            className="font-semibold text-lg"
+            className="font-semibold text-neutral text-base"
           >
             {request.sender.name}
           </Link>
-          <p className="text-gray-600">{request.sender.headline}</p>
+          <p className="text-gray-600 text-sm mb-1">
+            {request.sender.headline}
+          </p>
+          <p className="text-gray-600 text-xs">
+            {request.sender.connections.length} connections
+          </p>
         </div>
       </div>
 
       <div className="space-x-2">
         <button
-          className="bg-primary text-white px-4 py-2 rounded-md hover:bg-primary-dark transition-colors"
-          onClick={() => acceptConnectionRequest(request._id)}
+          className="border border-secondary text-secondary px-4 py-2 rounded-lg hover:bg-secondary hover:text-white transition-colors"
+          onClick={() => acceptConnectionRequestMutation(request._id)}
         >
           Accept
         </button>
         <button
-          className="bg-gray-200 text-gray-800 px-4 py-2 rounded-md hover:bg-gray-300 transition-colors"
-          onClick={() => rejectConnectionRequest(request._id)}
+          className="bg-gray-200 text-neutral px-4 py-2 rounded-lg hover:bg-gray-300 transition-colors"
+          onClick={() => rejectConnectionRequestMutation(request._id)}
         >
           Reject
         </button>

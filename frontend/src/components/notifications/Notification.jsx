@@ -60,7 +60,7 @@ const Notification = ({ notification }) => {
     return (
       <Link
         to={`/post/${relatedPost._id}`}
-        className="mt-2 p-2 bg-gray-50 rounded-md flex items-center space-x-2 hover:bg-gray-100 transition-colors"
+        className="mt-2 p-2 bg-gray-50 rounded-lg flex items-center space-x-2 hover:bg-gray-100 transition-colors"
       >
         {relatedPost.image && (
           <img
@@ -82,8 +82,8 @@ const Notification = ({ notification }) => {
   return (
     <li
       key={notification._id}
-      className={`bg-white border rounded-lg p-4 my-4 transition-all hover:shadow-md ${
-        !notification.read ? "border-blue-500" : "border-gray-200"
+      className={`border-b p-4 transition-all ${
+        !notification.read ? "bg-blue-200 hover:bg-blue-300" : "bg-white"
       }`}
     >
       <div className="flex items-start justify-between">
@@ -95,7 +95,6 @@ const Notification = ({ notification }) => {
               className="w-12 h-12 rounded-full object-cover"
             />
           </Link>
-
           <div>
             <div className="flex items-center gap-2">
               <div className="p-1 bg-gray-100 rounded-full">
