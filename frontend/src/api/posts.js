@@ -25,8 +25,8 @@ export const createPost = async (postData) => {
 };
 
 // Create comment
-export const createComment = async (postId, commentData) => {
+export const createComment = async ({ comment, postId }) => {
   await axiosInstance.post(`/posts/${postId}/comment`, {
-    content: commentData,
+    content: comment,
   });
 };
