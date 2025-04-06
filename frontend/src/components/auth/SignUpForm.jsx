@@ -3,6 +3,7 @@ import { Loader } from "lucide-react";
 import { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { axiosInstance } from "../../lib/axios.js";
+import InputField from "../shared/InputField.jsx";
 
 const SignUpForm = () => {
   const [name, setName] = useState("");
@@ -41,48 +42,40 @@ const SignUpForm = () => {
 
   return (
     <form onSubmit={handleSignup} className="flex flex-col gap-4">
-      <input
+      <InputField
         type="text"
         value={name}
         placeholder="Full Name"
+        required={true}
         onChange={(e) => setName(e.target.value)}
-        className="input input-bordered w-full"
-        required
       />
-      <input
+      <InputField
         type="text"
         value={username}
         placeholder="Username"
+        required={true}
         onChange={(e) => setUsername(e.target.value)}
-        className="input input-bordered w-full"
-        required
       />
-      <input
+      <InputField
         type="email"
         value={email}
         placeholder="Email"
+        required={true}
         onChange={(e) => setEmail(e.target.value)}
-        className="input input-bordered w-full"
-        required
       />
-      <input
+      <InputField
         type="password"
         value={password}
         placeholder="Password (6+ characters)"
+        required={true}
         onChange={(e) => setPassword(e.target.value)}
-        className="input input-bordered w-full"
-        required
       />
       <button
         type="submit"
         disabled={isLoading}
-        className="btn btn-primary w-full text-white"
+        className="submit-button w-full"
       >
-        {isLoading ? (
-          <Loader className="size-5 animate-spin" />
-        ) : (
-          "Agree & Join"
-        )}
+        {isLoading ? <Loader className="size-5 animate-spin" /> : "Sign Up"}
       </button>
     </form>
   );

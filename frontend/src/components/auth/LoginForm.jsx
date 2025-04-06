@@ -3,6 +3,7 @@ import { Loader } from "lucide-react";
 import { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { axiosInstance } from "../../lib/axios.js";
+import InputField from "../shared/InputField.jsx";
 
 const LoginForm = () => {
   const [username, setUsername] = useState("");
@@ -25,25 +26,22 @@ const LoginForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 w-full max-w-md">
-      <input
+    <form onSubmit={handleSubmit} className="space-y-4 w-full">
+      <InputField
+        required={true}
         type="text"
         placeholder="Username"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
-        className="input input-bordered w-full"
-        required
       />
-      <input
+      <InputField
+        required={true}
         type="password"
         placeholder="Password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
-        className="input input-bordered w-full"
-        required
       />
-
-      <button type="submit" className="btn btn-primary w-full">
+      <button type="submit" className="submit-button w-full">
         {isLoading ? <Loader className="size-5 animate-spin" /> : "Login"}
       </button>
     </form>
