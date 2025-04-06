@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .card {
+    @apply bg-base-100 rounded-2xl border-base-300 border-[1px];
+  }
+
+  .submit-button {
+    @apply bg-neutral text-sm text-base-100 font-semibold rounded-lg px-8 py-2 hover:bg-secondary duration-200 text-nowrap;
+  }
+}
