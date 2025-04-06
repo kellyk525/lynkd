@@ -14,8 +14,8 @@ const RecommendedUser = ({ user }) => {
           className="w-12 h-12 rounded-full mr-3"
         />
         <div>
-          <h3 className="font-semibold text-sm">{user.name}</h3>
-          <p className="text-xs text-info">{user.headline}</p>
+          <h3 className="text-sm text-neutral font-semibold">{user.name}</h3>
+          <p className="text-xs text-gray-500">{user.headline}</p>
         </div>
       </Link>
       <ConnectionStatusButton user={user} />
