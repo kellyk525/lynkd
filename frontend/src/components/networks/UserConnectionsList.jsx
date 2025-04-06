@@ -11,9 +11,11 @@ const UserConnectionsList = () => {
   return (
     <>
       {connections?.data?.length > 0 && (
-        <div className="mb-8">
-          <h2 className="text-xl font-semibold mb-4">My Connections</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="card mb-8 pb-5">
+          <h2 className="text-base p-5">
+            My Connections ({connections.data.length})
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 px-5">
             {connections.data.map((connection) => (
               <UserCard
                 key={connection._id}
