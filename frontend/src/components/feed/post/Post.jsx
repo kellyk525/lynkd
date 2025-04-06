@@ -20,23 +20,17 @@ const Post = ({ post }) => {
   };
 
   return (
-    <div className="bg-secondary rounded-lg shadow mb-4">
-      <div className="p-4">
-        <PostHeader post={post} isOwner={isOwner} />
-        <p className="mb-4">{post.content}</p>
-        {post.image && (
-          <img
-            src={post.image}
-            alt="Post content"
-            className="rounded-lg w-full mb-4"
-          />
-        )}
-        <PostActions
-          post={post}
-          isLiked={isLiked}
-          toggleCommentsSection={handleToggleCommentsSection}
-        />
-      </div>
+    <div className="card mb-2.5 py-4 pb-1">
+      <PostHeader post={post} isOwner={isOwner} />
+      <p className="text-sm px-4 mb-4">{post.content}</p>
+      {post.image && (
+        <img src={post.image} alt="Post content" className="w-full mb-4" />
+      )}
+      <PostActions
+        post={post}
+        isLiked={isLiked}
+        toggleCommentsSection={handleToggleCommentsSection}
+      />
       {showComments && <CommentsSection post={post} currentUser={authUser} />}
     </div>
   );

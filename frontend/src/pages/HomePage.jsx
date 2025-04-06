@@ -7,7 +7,7 @@ import { getPosts } from "../api/posts.js";
 
 import Post from "../components/feed/post/Post.jsx";
 import Sidebar from "../components/Sidebar.jsx";
-import PostCreation from "../components/PostCreation.jsx";
+import PostCreation from "../components/feed/PostCreation.jsx";
 import RecommendedUser from "../components/feed/recommendations/RecommendedUser.jsx";
 
 const HomePage = () => {
@@ -27,7 +27,7 @@ const HomePage = () => {
   });
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+    <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 py-6">
       <div className="hidden lg:block lg:col-span-1">
         <Sidebar user={authUser} />
       </div>
@@ -51,8 +51,8 @@ const HomePage = () => {
         )}
       </div>
       {recommendedUsers?.length > 0 && (
-        <div className="col-span-1 lg:col-span-1 hidden lg:block">
-          <div className="bg-secondary rounded-lg shadow p-4">
+        <div className="hidden lg:block lg:col-span-1">
+          <div className="card p-4">
             <h2 className="font-semibold mb-4">People you may know</h2>
             {recommendedUsers?.map((user) => (
               <RecommendedUser key={user._id} user={user} />

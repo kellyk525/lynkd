@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { ThumbsUp, MessageCircle, Share2 } from "lucide-react";
+import { ThumbsUp, MessageCircle, Repeat2, Send } from "lucide-react";
 import { likePost } from "../../../api/posts.js";
 import PostAction from "./PostAction.jsx";
 
@@ -21,7 +21,7 @@ const PostActions = ({ post, isLiked, toggleCommentsSection }) => {
   };
 
   return (
-    <div className="flex justify-between text-info">
+    <div className="flex justify-between text-neutral text-sm font-semibold border-t-[1px] pt-1 mx-2">
       <PostAction
         icon={
           <ThumbsUp
@@ -38,7 +38,8 @@ const PostActions = ({ post, isLiked, toggleCommentsSection }) => {
         text={`Comment (${post.comments.length})`}
         onClick={toggleCommentsSection}
       />
-      <PostAction icon={<Share2 size={18} />} text="Share" />
+      <PostAction icon={<Repeat2 size={18} />} text="Repost" />
+      <PostAction icon={<Send size={18} />} text="Send" />
     </div>
   );
 };

@@ -2,7 +2,7 @@ import toast from "react-hot-toast";
 import { useState } from "react";
 import { Image, Loader } from "lucide-react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { createComment } from "../api/posts.js";
+import { createPost } from "../../api/posts.js";
 
 const PostCreation = ({ user }) => {
   const [content, setContent] = useState("");
@@ -11,7 +11,7 @@ const PostCreation = ({ user }) => {
   const queryClient = useQueryClient();
 
   const { mutate: createPostMutation, isPending } = useMutation({
-    mutationFn: (postData) => createComment(postData),
+    mutationFn: (postData) => createPost(postData),
     onSuccess: () => {
       resetForm();
       toast.success("Post created successfully");
@@ -61,7 +61,7 @@ const PostCreation = ({ user }) => {
   };
 
   return (
-    <div className="bg-secondary rounded-lg shadow mb-4 p-4">
+    <div className="card mb-4 p-4">
       <div className="flex space-x-3">
         <img
           src={user.profilePicture || "/avatar.png"}
@@ -69,8 +69,8 @@ const PostCreation = ({ user }) => {
           className="size-12 rounded-full"
         />
         <textarea
-          placeholder="What's on your mind?"
-          className="w-full p-3 rounded-lg bg-base-100 hover:bg-base-200 focus:bg-base-200 focus:outline-none resize-none transition-colors duration-200 min-h-[100px]"
+          placeholder="Start a post"
+          className="w-full p-3 border-[1px] rounded-xl border-base-300 hover:border-neutral focus:outline-none resize-none min-h-[100px]"
           value={content}
           onChange={(e) => setContent(e.target.value)}
         />
@@ -88,9 +88,9 @@ const PostCreation = ({ user }) => {
 
       <div className="flex justify-between items-center mt-4">
         <div className="flex space-x-4">
-          <label className="flex items-center text-info hover:text-info-dark transition-colors duration-200 cursor-pointer">
+          <label className="flex items-center text-sm text-neutral font-semibold hover:text-secondary duration-200 cursor-pointer">
             <Image size={20} className="mr-2" />
-            <span>Photo</span>
+            <span>Add Photo</span>
             <input
               type="file"
               accept="image/*"
@@ -99,9 +99,8 @@ const PostCreation = ({ user }) => {
             />
           </label>
         </div>
-
         <button
-          className="bg-primary text-white rounded-lg px-4 py-2 hover:bg-primary-dark transition-colors duration-200"
+          className="submit-button"
           onClick={handlePostCreation}
           disabled={isPending}
         >
