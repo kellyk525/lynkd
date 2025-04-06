@@ -134,18 +134,13 @@ const EditProfileActions = ({
     <>
       {isOwnProfile ? (
         isEditing ? (
-          <button
-            className="w-full bg-primary text-white py-2 px-4 rounded-full hover:bg-primary-dark
-                               transition duration-300"
-            onClick={onSave}
-          >
+          <button className="submit-button py-2 px-4 ml-4" onClick={onSave}>
             Save Profile
           </button>
         ) : (
           <button
             onClick={() => setIsEditing(true)}
-            className="w-full bg-primary text-white py-2 px-4 rounded-full hover:bg-primary-dark
-                               transition duration-300"
+            className="submit-button py-2 px-6 ml-6 mb-6"
           >
             Edit Profile
           </button>

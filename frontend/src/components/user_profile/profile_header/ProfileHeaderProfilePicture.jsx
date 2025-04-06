@@ -9,7 +9,7 @@ const ProfileHeaderProfilePicture = ({
   return (
     <div className="relative -mt-20 mb-4">
       <img
-        className="w-32 h-32 rounded-full mx-auto object-cover"
+        className="w-40 h-40 ml-6 rounded-full border-4 border-base-100 object-cover"
         src={
           editedData.profilePicture || userData.profilePicture || "/avatar.png"
         }
@@ -17,7 +17,7 @@ const ProfileHeaderProfilePicture = ({
       />
 
       {isEditing && (
-        <label className="absolute bottom-0 right-1/2 transform translate-x-16 bg-white p-2 rounded-full shadow cursor-pointer">
+        <label className="absolute bottom-0 left-0 transform translate-x-44 bg-white p-2 rounded-full shadow cursor-pointer">
           <Camera size={20} />
           <input
             type="file"

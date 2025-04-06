@@ -1,3 +1,5 @@
+import InputField from "../../shared/InputField";
+
 const ExperienceSectionEditForm = ({
   isEditing,
   newExperience,
@@ -8,35 +10,32 @@ const ExperienceSectionEditForm = ({
   return (
     <>
       {isEditing && (
-        <div className="mt-4">
-          <input
+        <div className="mt-4 flex flex-col gap-2">
+          <InputField
             type="text"
             placeholder="Title"
             value={newExperience.title}
             onChange={(e) =>
               setNewExperience({ ...newExperience, title: e.target.value })
             }
-            className="w-full p-2 border rounded mb-2"
           />
-          <input
+          <InputField
             type="text"
             placeholder="Company"
             value={newExperience.company}
             onChange={(e) =>
               setNewExperience({ ...newExperience, company: e.target.value })
             }
-            className="w-full p-2 border rounded mb-2"
           />
-          <input
+          <InputField
             type="date"
             placeholder="Start Date"
             value={newExperience.startDate}
             onChange={(e) =>
               setNewExperience({ ...newExperience, startDate: e.target.value })
             }
-            className="w-full p-2 border rounded mb-2"
           />
-          <div className="flex items-center mb-2">
+          <div className="flex items-center my-2">
             <input
               type="checkbox"
               id="currentlyWorking"
@@ -47,14 +46,13 @@ const ExperienceSectionEditForm = ({
             <label htmlFor="currentlyWorking">I currently work here</label>
           </div>
           {!newExperience.currentlyWorking && (
-            <input
+            <InputField
               type="date"
               placeholder="End Date"
               value={newExperience.endDate}
               onChange={(e) =>
                 setNewExperience({ ...newExperience, endDate: e.target.value })
               }
-              className="w-full p-2 border rounded mb-2"
             />
           )}
           <textarea
@@ -66,11 +64,11 @@ const ExperienceSectionEditForm = ({
                 description: e.target.value,
               })
             }
-            className="w-full p-2 border rounded mb-2"
+            className="w-full p-2 border border-base-300 rounded-lg mb-2"
           />
           <button
             onClick={handleAddExperience}
-            className="bg-primary text-white py-2 px-4 rounded hover:bg-primary-dark transition duration-300"
+            className="submit-button w-fit mt-2"
           >
             Add Experience
           </button>

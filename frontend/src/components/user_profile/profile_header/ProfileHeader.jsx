@@ -39,7 +39,7 @@ const ProfileHeader = ({ userData, onSave, isOwnProfile }) => {
   };
 
   return (
-    <div className="bg-white shadow rounded-lg mb-6">
+    <div className="card mb-2">
       <div
         className="relative h-48 rounded-t-lg bg-cover bg-center"
         style={{

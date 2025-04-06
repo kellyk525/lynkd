@@ -1,5 +1,6 @@
 import { X } from "lucide-react";
 import { useState } from "react";
+import InputField from "../shared/InputField";
 
 const SkillsSection = ({ userData, isOwnProfile, onSave }) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -23,8 +24,8 @@ const SkillsSection = ({ userData, isOwnProfile, onSave }) => {
   };
 
   return (
-    <div className="bg-white shadow rounded-lg p-6">
-      <h2 className="text-xl font-semibold mb-4">Skills</h2>
+    <div className="card py-6 px-10">
+      <h2 className="text-lg font-semibold mb-4">Skills</h2>
       <div className="flex flex-wrap">
         {skills.map((skill, index) => (
           <span
@@ -45,17 +46,16 @@ const SkillsSection = ({ userData, isOwnProfile, onSave }) => {
       </div>
 
       {isEditing && (
-        <div className="mt-4 flex">
-          <input
+        <div className="mt-4 flex items-center">
+          <InputField
             type="text"
             placeholder="New Skill"
             value={newSkill}
             onChange={(e) => setNewSkill(e.target.value)}
-            className="flex-grow p-2 border rounded-l"
           />
           <button
             onClick={handleAddSkill}
-            className="bg-primary text-white py-2 px-4 rounded-r hover:bg-primary-dark transition duration-300"
+            className="submit-button ml-2 w-fit bg-base-300 text-neutral hover:bg-gray-400"
           >
             Add Skill
           </button>
@@ -67,14 +67,14 @@ const SkillsSection = ({ userData, isOwnProfile, onSave }) => {
           {isEditing ? (
             <button
               onClick={handleSave}
-              className="mt-4 bg-primary text-white py-2 px-4 rounded hover:bg-primary-dark transition duration-300"
+              className="submit-button py-2 mt-5 w-fit"
             >
               Save Changes
             </button>
           ) : (
             <button
               onClick={() => setIsEditing(true)}
-              className="mt-4 text-primary hover:text-primary-dark transition duration-300"
+              className="submit-button py-2 mt-4 w-fit"
             >
               Edit Skills
             </button>

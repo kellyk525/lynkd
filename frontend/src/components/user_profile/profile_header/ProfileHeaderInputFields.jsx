@@ -1,4 +1,5 @@
 import { MapPin } from "lucide-react";
+import InputField from "../../shared/InputField";
 
 const ProfileHeaderInputFields = ({
   isEditing,
@@ -7,48 +8,47 @@ const ProfileHeaderInputFields = ({
   userData,
 }) => {
   return (
-    <div className="text-center mb-4">
+    <div className={`mx-6 mb-4 flex flex-col ${isEditing && "gap-3"}`}>
       {isEditing ? (
-        <input
-          type="text"
-          value={editedData.name ?? userData.name}
-          onChange={(e) =>
-            setEditedData({ ...editedData, name: e.target.value })
-          }
-          className="text-2xl font-bold mb-2 text-center w-full"
-        />
-      ) : (
-        <h1 className="text-2xl font-bold mb-2">{userData.name}</h1>
-      )}
-
-      {isEditing ? (
-        <input
-          type="text"
-          value={editedData.headline ?? userData.headline}
-          onChange={(e) =>
-            setEditedData({ ...editedData, headline: e.target.value })
-          }
-          className="text-gray-600 text-center w-full"
-        />
-      ) : (
-        <p className="text-gray-600">{userData.headline}</p>
-      )}
-
-      <div className="flex justify-center items-center mt-2">
-        <MapPin size={16} className="text-gray-500 mr-1" />
-        {isEditing ? (
-          <input
+        <>
+          <InputField
             type="text"
-            value={editedData.location ?? userData.location}
+            value={editedData.name ?? userData.name}
             onChange={(e) =>
-              setEditedData({ ...editedData, location: e.target.value })
+              setEditedData({ ...editedData, name: e.target.value })
             }
-            className="text-gray-600 text-center"
           />
-        ) : (
-          <span className="text-gray-600">{userData.location}</span>
-        )}
-      </div>
+          <InputField
+            type="text"
+            value={editedData.headline ?? userData.headline}
+            onChange={(e) =>
+              setEditedData({ ...editedData, headline: e.target.value })
+            }
+          />
+          <div className="flex items-center">
+            <MapPin size={14} className="text-gray-500 mr-1" />
+            <InputField
+              type="text"
+              value={editedData.location ?? userData.location}
+              onChange={(e) =>
+                setEditedData({ ...editedData, location: e.target.value })
+              }
+            />
+          </div>
+        </>
+      ) : (
+        <>
+          <h1 className="text-2xl font-semibold">{userData.name}</h1>
+          <p className="text-neutral mt-1.5">{userData.headline}</p>
+          <div className="flex items-center mt-1.5">
+            <MapPin size={14} className="text-gray-500 mr-1" />
+            <span className="text-gray-500 text-sm">{userData.location}</span>
+          </div>
+        </>
+      )}
+      <p className="text-sm mt-1.5 text-gray-500">
+        {userData.connections.length} Connections
+      </p>
     </div>
   );
 };

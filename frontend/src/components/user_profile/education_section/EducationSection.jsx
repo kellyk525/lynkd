@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { School, X } from "lucide-react";
+import InputField from "../../shared/InputField";
 
 const EducationSection = ({ userData, isOwnProfile, onSave }) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -37,8 +38,8 @@ const EducationSection = ({ userData, isOwnProfile, onSave }) => {
   };
 
   return (
-    <div className="bg-white shadow rounded-lg p-6 mb-6">
-      <h2 className="text-xl font-semibold mb-4">Education</h2>
+    <div className="card py-6 px-10 mb-2">
+      <h2 className="text-lg font-semibold mb-4">Education</h2>
       {educations.map((edu) => (
         <div key={edu._id} className="mb-4 flex justify-between items-start">
           <div className="flex items-start">
@@ -62,46 +63,42 @@ const EducationSection = ({ userData, isOwnProfile, onSave }) => {
         </div>
       ))}
       {isEditing && (
-        <div className="mt-4">
-          <input
+        <div className="mt-4 flex flex-col gap-2">
+          <InputField
             type="text"
             placeholder="School"
             value={newEducation.school}
             onChange={(e) =>
               setNewEducation({ ...newEducation, school: e.target.value })
             }
-            className="w-full p-2 border rounded mb-2"
           />
-          <input
+          <InputField
             type="text"
             placeholder="Field of Study"
             value={newEducation.fieldOfStudy}
             onChange={(e) =>
               setNewEducation({ ...newEducation, fieldOfStudy: e.target.value })
             }
-            className="w-full p-2 border rounded mb-2"
           />
-          <input
+          <InputField
             type="number"
             placeholder="Start Year"
             value={newEducation.startYear}
             onChange={(e) =>
               setNewEducation({ ...newEducation, startYear: e.target.value })
             }
-            className="w-full p-2 border rounded mb-2"
           />
-          <input
+          <InputField
             type="number"
             placeholder="End Year"
             value={newEducation.endYear}
             onChange={(e) =>
               setNewEducation({ ...newEducation, endYear: e.target.value })
             }
-            className="w-full p-2 border rounded mb-2"
           />
           <button
             onClick={handleAddEducation}
-            className="bg-primary text-white py-2 px-4 rounded hover:bg-primary-dark transition duration-300"
+            className="submit-button py-2 mt-4 w-fit"
           >
             Add Education
           </button>
@@ -113,15 +110,14 @@ const EducationSection = ({ userData, isOwnProfile, onSave }) => {
           {isEditing ? (
             <button
               onClick={handleSave}
-              className="mt-4 bg-primary text-white py-2 px-4 rounded hover:bg-primary-dark
-							 transition duration-300"
+              className="submit-button py-2 mt-4 w-fit"
             >
               Save Changes
             </button>
           ) : (
             <button
               onClick={() => setIsEditing(true)}
-              className="mt-4 text-primary hover:text-primary-dark transition duration-300"
+              className="submit-button py-2 mt-4 w-fit"
             >
               Edit Education
             </button>
