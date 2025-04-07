@@ -7,6 +7,7 @@ import {
   sendConnectionRequest,
   acceptConnectionRequest,
   rejectConnectionRequest,
+  removeConnection,
 } from "../../../api/connections.js";
 
 const EditProfileActions = ({
@@ -58,7 +59,7 @@ const EditProfileActions = ({
     },
   });
 
-  const { mutate: removeConnection } = useMutation({
+  const { mutate: removeConnectionMutation } = useMutation({
     mutationFn: (userId) => removeConnection(userId),
     onSuccess: () => handleConnectionMutation("Connection removed"),
     onError: (error) => {
@@ -84,7 +85,7 @@ const EditProfileActions = ({
             </div>
             <button
               className={`${baseClass} bg-red-500 hover:bg-red-600 text-sm`}
-              onClick={() => removeConnection(targetUserId)}
+              onClick={() => removeConnectionMutation(targetUserId)}
             >
               <X size={20} className="mr-2" />
               Remove Connection
