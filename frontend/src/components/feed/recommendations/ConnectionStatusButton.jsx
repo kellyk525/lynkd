@@ -96,7 +96,7 @@ const ConnectionStatusButton = ({ user }) => {
             />
           </div>
         );
-      case "pending":
+      case "connected":
         return (
           <StatusButton
             disabled={true}
