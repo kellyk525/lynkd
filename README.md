@@ -15,7 +15,8 @@
 **Frontend**
 
 - JavaScript
-- Vite (React)
+- Vite
+- React (via Vite)
 - TanStack Query
 - TailwindCSS
 
