@@ -4,7 +4,7 @@ import { getCurrentUser } from "../../../api/auth.js";
 
 import PostHeader from "./PostHeader.jsx";
 import PostActions from "./PostActions.jsx";
-import CommentsSection from "../comments/commentsSection.jsx";
+import CommentsSection from "../comments/CommentsSection";
 
 const Post = ({ post }) => {
   const { data: authUser } = useQuery({
