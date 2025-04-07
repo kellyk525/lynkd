@@ -10,7 +10,7 @@
 - Connection Requests (Send, Accept, Decline)
 - Notifications (for Connection Requests, Likes, and Comments)
 
-### Tech Stack
+## Tech Stack
 
 **Frontend**
 
@@ -25,7 +25,7 @@
 - Express
 - MongoDB
 
-### 🚀 Getting Started
+## 🚀 Getting Started
 
 **📦 Prerequisites**
 
@@ -41,7 +41,7 @@
 
 - `git clone https://github.com/kellyk525/lynkd.git`
 
-### 🔧 Backend Setup
+## 🔧 Backend Setup
 
 Install backend dependencies (root directory):
 
@@ -51,7 +51,7 @@ Start the backend development server:
 
 `npm run dev`
 
-### 💻 Frontend Setup
+## 💻 Frontend Setup
 
 Navigate to the frontend directory:
 
