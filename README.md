@@ -14,6 +14,18 @@
 - Connection Requests (Send, Accept, Decline)
 - Notifications (for Connection Requests, Likes, and Comments)
 
+Main Page (Post Feed):  
+<img width="600" alt="lynkd-2" src="https://github.com/user-attachments/assets/0c5c3311-656e-48e0-b2f9-c77bc7848141" />
+
+Connection Invitations:  
+<img width="600" alt="lynkd-4" src="https://github.com/user-attachments/assets/1b0def04-8e2b-4b01-b229-598e427f23f5" />
+
+Notifications (Likes, Comments, Connection Requests):  
+<img width="600" alt="lynkd-3" src="https://github.com/user-attachments/assets/7a4cab7a-e758-4b2a-bf71-8e428a70daf9" />
+
+Profile Page:  
+<img width="600" alt="lynkd-1" src="https://github.com/user-attachments/assets/b453ff09-e9f2-4835-810e-38a25a6ad51e" />
+
 ## Tech Stack
 
 **Frontend**
